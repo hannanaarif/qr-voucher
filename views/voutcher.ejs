@@ -1,0 +1,95 @@
+<!-- views/vouchers.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>All Vouchers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: #fff;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>All Vouchers</h1>
+        <% if (vouchers.length===0) { %>
+            <p>No vouchers found.</p>
+            <% } else { %>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Code</th>
+                            <th>Discount</th>
+                            <th>Expiry Date</th>
+                            <th>Created At</th>
+                            <!-- Add more headers as per your table structure -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% vouchers.forEach(voucher=> { %>
+                            <tr>
+                                <td>
+                                    <%= voucher.id %>
+                                </td>
+                                <td>
+                                    <%= voucher.code %>
+                                </td>
+                                <td>
+                                    <%= voucher.discount %>%
+                                </td>
+                                <td>
+                                    <%= new Date(voucher.expiry_date).toLocaleDateString() %>
+                                </td>
+                                <td>
+                                    <%= new Date(voucher.created_at).toLocaleString() %>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+                <% } %>
+    </div>
+</body>
+
+</html>
